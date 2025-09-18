@@ -1,0 +1,11 @@
+SnuggleTP – /snuggle teleports you directly to your partner. Cooldown optional.
+
+CuddleBeds – If both of you sleep in beds within X blocks, it gives a bonus (regen for 30s, etc).
+
+Private Chests – Chests tagged with your name, only you can open.
+
+Silly Titles – Custom /title commands like “Snow the Silly Fox” above your name.
+
+Shared Hearts – Both share a “bonded heart bar” (if one eats, both heal a little).
+
+

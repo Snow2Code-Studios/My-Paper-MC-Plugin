@@ -1,0 +1,330 @@
+join-messages:
+  ConeheadZombiee:
+    - "%s has entered the room... Snowy's BF is here, behave yourselves."
+    - "%s has entered the chat. Snowcone alert. Respect or perish."
+    - "%s walked in. Snowy’s here too, probably attached to his hip."
+    - "Oh look, it’s %s. Do not engage unless you're ready to be sassed."
+    - "%s has entered. Snowy, you don't have to sad now. Your cutie is here."
+    - "%s joins the chaos. Hide your dignity."
+    - "%s shows up. He's already teasing someone in DMs, probably Snowy. *sigh*."
+    - "%s has arrived. Wielding sass, Snowy, and probably silliness."
+    - "%s just showed up. Snowy’s tail probably perked up too."
+    - "%s has arrived. Love is real and so is the sass."
+    - "%s enters, armed with charm, chaos, and Snowy’s affection."
+    - "%s joins. The boyfriend energy is heavy. Respect it or get slapped."
+    - "%s entered. Somewhere, Snowy just got 20% happier."
+    - "%s showed up. Snowy's probably already wrapped around his arm."
+    - "%s walks in like he owns the place. Honestly? He kinda does."
+    - "%s is here. Snowy’s grin just doubled. Proceed with caution."
+    - "%s joins. Snowy just sighed dreamily somewhere."
+    - "%s has connected. Love is in the air and sass is on the menu."
+    - "%s enters. The Snowy Protection Squad just got its leader."
+    - "%s walked in. The boyfriend buff has been activated."
+    - "%s appeared. Somewhere, Snowy's tail just did a happy little wag."
+    - "%s is here. The chaos duo is now fully operational."
+    - "%s showed up. Is that Snowy blushing, or just overheating again?"
+    - "%s joins. Snowy just let out a dreamy little sigh. We all heard it."
+
+    # '%s joins. Better '"Run for it"'   to  "%s joins. Better 'Run for it'"
+    # Cone made you.
+    - "%s logged in. Dildo joke loading... complete."
+    - "%s walks in. somewhere, someones snower grew-" # Cone made you.
+    - "%s joins, Somewere Snowy just took a picture of a dildo as proof" # Cone made you.
+    - "%s walks in like he didnt just spend 5 hours downloading dustbowl" # Cone made you.
+    - "%s joins. or did he? He's just too swagger to know.."  # Cone made you
+    - "%s joins.... What you wanted a message?" # Cone made you.
+    - "%s joins. Better 'Run for it'" # Cone made you.
+    # '%s joins. Ready to spam "skibidi" In the chat', # Cone made you.
+    - "%s joins. ready to waste his money on virtual pixles." # Cone made you.
+    - "%s walks in dildo in hand" # Cone made you.
+    - "%s joins. ready to comfort Snowy about anything" # Cone made you.
+    - "%s joins. Snows tail just got a planned crit" # Cone made you.
+    - "%s joins. Ready to pester Snowy about more dildo messages"
+
+
+    - "Heart alert: %s just joined… fox boy incoming."
+    - "Fox Boy Alert: %s is here… love-struck and far away."
+    - "Incoming fox boy energy: %s has arrived."
+    - "Careful… the Fox Boy %s might steal your heart."
+
+  snow2code:
+    - "%s sneaks in, black clothes and stolen keyboard in tow."
+    - "%s arrives with thigh highs, autism, and no apologies."
+    - "%s slithered in... probably pocketing another USB hub."
+    - "Everyone hide your stuff. %s just entered. Especially if it's shaped weird."
+    - "%s has entered. Yes, she is autistic. Yes, she is wearing black. And yes, she is judging you."
+    - "%s has appeared, leash and all. It's not a kink. Don't ask."
+    - "%s just entered. If anything's missing, check her tailhole." # tailhole instead tailfluff.
+    - "%s arrived. A snow-white arctic fox with a criminal record (for stealing keyboards)."
+    - "Lock up your stuff. %s is here and she’s wearing black."
+    - "%s joins. Red-flecked fluff today. Looks like trouble."
+    - "%s is here. Not into pet play. Still wearing the leash. Don't question it."
+    - "%s walks in, thighs high, morals low, curse level... trying to be managed."
+    - "%s padded in with silent steps and fluffy menace."
+    - "%s has logged in. Prepare the sass, the leashes, and maybe a crowbar."
+    - "%s is here. Gender? Maybe. Crimes? Yes." # No. Crimes? Yes. instead of Maybe. Crimes? Yes.
+    - "%s entered with five keyboards and zero guilt."
+    - "%s shows up, morally grey and fashionably black."
+    - "%s just walked in. Cone’s heart rate increased by 30 BPM. Totaling his BPM to 110."
+    - "%s joined. The tail swished. A keyboard disappeared."
+    - "%s appears. Possibly stole your HDMI cable. Check now."
+    - "%s just arrived. Her fluff is brighter than your future."
+    - "%s steps in. Probably has another stolen dongle in her maw." # mouth instead of maw
+    - "%s connected. Did anyone order the vibrating payload?"
+    - "%s has joined. The storm approaches. With snacks."
+    - "%s has arrived. All systems: mildly concerned."
+    - "%s just joined. Hope you weren’t using your spine."
+    - "%s is in. The air got 3% gayer. And louder."
+    - "%s is here. The vibes? Rotten. The fluff? Glorious." # The hair? Glorious instead of The fluff? Glorious
+    - "%s joined. Expect tail whips and emotional damage."
+    - "%s has arrived. Probably gonna break something. With love.. or in another way." # edited from the tf2. added "or in another way"
+    - "%s connected. Someone give her a theme song already."
+    - "%s logged in. Silly energy: now set to MAXIMUM."
+
+    ## Join Messages - Dildo Edition
+    # - "%s the dildo user is here." # (cone you can shut up about this now. It is now a join message.)"
+    # - "%s the dildo thief has joined." # (Cone, it’s canon now. Shut up.)"
+    # - "%s has joined the server. She's bringing the industrial-strength dildo."
+    # - "%s entered the battlefield. Dildos in both paws, hope in none."
+    # - "%s just slid in. Like a dildo into a fresh jar of peanut butter."
+    - "%s spawned. Vibrations intensify."
+    # - "%s has joined. Warning: Her dildo has Bluetooth support."
+    # - "%s emerged from the shadows... wielding the forbidden rubber."
+    # - "%s connected. Dildo physics enabled."
+    # - "%s hopped in. The silicone menace returns."
+    # - "%s just joined. Her loadout includes regret and a 14-incher."
+    # - "%s is here. Dildos? Yes. Dignity? No."
+
+    # - "%s has joined. Her dildo-shaped aura is glowing ominously."
+    # - "%s connected. She's dual-wielding the forbidden silicone."
+    # - "%s just joined the dildo dimension. Proceed with caution."
+    # - "%s spawned. The room just got 20% more slippery."
+    # - "%s arrived. Bringing chaos, rubber, and a terrible sense of pride."
+    # - "%s joined the party. Dildo in one hand, no shame in the other."
+    # - "%s logged in. The Dildo Defense Force salutes you."
+    # "%s entered the fray. Inventory: 99 problems, and every one’s a dildo."
+    # "%s is here. Time to insert some pain into the match.. or a dildo."
+    ##
+
+    ## Join Messages - Boyfriend Made Edition
+    - "%s joins, With as much swag as her depraving sleep schedule" # Cone made you.
+    - "%s joins.. or not. We don't know, thats not our job" # Cone made you
+    - "%s joins, Commands in hand" # Cone made you.
+    # "%s joins, HOLY SHIT IS THAT A WETHER REFRANCE" # Cone made you.
+    - "%s joins. Too hot in both ways" # Cone made you.
+    # "%s joins. She just wrote 3 new dildo messages" # Cone made you.
+    - "%s joins, Ready to call Cone cute for the 900th time" # Cone made you.
+    # "Snows joins, Heh notice that new name" # Cone made you.
+    # "%s walks in. then runs out after seeing Cone with a dildo in hand" # Cone made you.
+    - "Snow joins. now with less characters in her name" # Cone made you.
+    # "%s joins. ready to tell everyone her pronowns" # Cone made you.
+    # "%s joins.. Cone put it away-"
+    ##
+
+
+    - "%s appears. She says it's now is already too late."
+    - "%s arrives, a little possessed but dangerously fresh."
+    - "%s appears, gone in a week, or maybe tonight."
+    - "A little better, a little brighter—%s is here."
+    - "%s arrives, bringing sunsets and webcams."
+    - "%s arrives. Don’t forget your companion cube."
+    - "Always tripping someone up… %s is here."
+    - "%s arrives—hope you like zombies."
+    - "Another day, another %s in the chat."
+    - "All that effort brought %s here."
+    - "Animal instincts activated: %s just joined."
+    - "Armed and ready: %s has joined."
+
+    - "%s barges in, bitter, blunt, and free at last."
+    - "%s bounces in, a circus hop away from chaos."
+    - "Bach would approve: %s has arrived with style."
+    - "Beware, %s just rolled in with massive force."
+    - "Breadcrumbs beware: %s has arrived."
+    - "Brains incoming! %s just joined."
+    - "Be more like %s—joined the chat."
+    - "Beware… %s has arrived."
+    - "Bite mode activated: %s entered."
+    - "Break out the forest… %s enters with fox paws."
+    - "%s enters… falling, but not failing."
+    - "%s enters… your brain is now theirs."
+    - "%s enters… don’t blink or you’ll miss it."
+
+    - "Can't keep friends waitin'—%s just flew in."
+    - "%s connects, bringing chaos, rubber, and regret."
+    - "%s crashes in with a thunderous riff."
+    - "%s crawls into the chat… sad, drunk, needy."
+    - "Cowboy kid alert: %s has arrived."
+    - "Caught in the undertow: %s is here."
+    - "Cupid alert: %s is playing."
+    - "Cloudy day alert: %s has arrived."
+    - "Caution: %s may nap mid-chat."
+    - "Chaos incoming: %s is here."
+    - "Classic vibes: %s just joined… Windows XP style."
+    - "Chaos incoming: %s went full rogue."
+
+    - "Delete immediately… just kidding, %s is here."
+    - "%s drifts in like snow in Sweden."
+
+    - "%s enters — normal on the outside, void on the inside."
+    - "%s escaped after bargaining for less work and more affection."
+    - "%s enters like a blur—faster than your notifications."
+    - "%s enters, anxieties and all."
+    - "Even from afar, %s has joined."
+    - "%s enters dramatically—hold onto your ears."
+    - "%s enters, anything goes tonight."
+    - "%s enters… the ground trembles."
+    - "%s enters, stirring bittersweet chaos."
+    - "%s enters… radioactive energy detected."
+    - "%s enters—quick hand, faster feet."
+    - "Edge alert: %s has arrived."
+
+    - "%s floats in like a dandelion wish gone wrong."
+    - "Fox spotted: %s just joined."
+
+    - "Ghost alert: %s is creeping in."
+    - "Gloom incoming: %s joined."
+    - "Glass and shine alert: %s just joined."
+
+    # "Hello %s, We assume you like fish"
+    - "<%s> hi im snow and i like fish"
+    - "%s has arrived, trailing bitter verses behind."
+    - "%s has arrived, trembling hands and all."
+    - "%s has joined — hopes low, volume high."
+    - "Heavy stomps in… wait, that’s %s."
+    - "%s has joined. The cake is still a lie." # CAKE CANT BE ALIVE?? WTF!?!?! CHANGD TO A LIE
+    - "%s has arrived… apologies already prepared."
+    - "Hardstyle incoming: %s has joined."
+    - "Hold tight… %s is riding into the danger zone."
+    - "Highway alert: %s enters full throttle."
+    - "%s has arrived… enjoy those smooth animations."
+
+    - "%s is here—better use your head!"
+    - "%s is here… music just turned on."
+    - "%s is here… don’t leave your doors open."
+    - "%s is here… sunshine guaranteed."
+    - "%s is here… better run faster than their bullet."
+    - "%s is joining… stepping out of expectations."
+    - "%s is here… avoid eye contact."
+    - "%s is here… the most loneliest day begins."
+    - "%s is here… let’s get frisky~"
+    - "%s is on a leash… behave."
+    - "%s is holding the room hostage."
+    - "%s is here… claws ready."
+    - "%s is here… better watch your tail."
+    - "%s is here… claws and tails at the ready."
+    - "%s is here… welcome, and please enjoy the chimes."
+    - "%s is here… Aero mode engaged."
+    - "%s is here… and nobody’s stopping her."
+
+    - "%s joins, singing about treasures already forgotten."
+    - "%s joins. She lost desire, and swore she never meant to leave."
+    - "%s joins with silly plans and sillier timing."
+    - "%s joined, silly plans folded in their pocket."
+    - "%s joins, acting normal (which is suspicious)."
+    - "%s just phased in, illusions packed tight."
+    - "%s just arrived—heart racing, thoughts colliding."
+    - "%s joins! Friendly fires may occur."
+    - "%s just stole the spotlight."
+    - "%s joins: can’t explain, just feel it."
+    - "%s just woke up in ash and dust."
+    - "%s joins: me, myself, and I all included."
+    - "%s just joined… hearts at risk."
+    - "%s just stepped in… brace for the lonely vibes."
+    - "%s just joined… energy levels critical."
+    - "%s just joined… zero fucks given." ## was zero cares given.
+    - "%s just revved in—danger zone engaged."
+
+    - "Keep your distance, %s is here."
+    - "Keep your distance, %s marches alone."
+
+    - "%s likes fish"
+    - "%s logs in—light travels fast, even in LDR."
+    - "Like a thief in the night… %s has arrived."
+    - "Lost in space? %s is joining."
+    - "%s logs in… survey time!"
+    - "%s logs in… feeling numb."
+    - "Love, hate… %s picked a side."
+    - "Lonely fox alert: %s has arrived." # lonely wolf, instead of lonley fox
+    - "Leash engaged: %s has joined."
+
+    - "%s merges memories and still forgets the password."
+    - "Medic’s ready… %s just entered."
+    - "Monster mode: %s has joined the fight."
+    - "Move slowly… %s is here."
+    - "Mind full of wacky shit: %s has arrived."
+    - "Move fast, %s just entered the hardstyle zone."
+
+    - "Notification alert: %s has entered the station."
+    - "Never alone… %s is under control."
+    - "No rules, no regrets… %s entered."
+    - "Next beat drops… %s arrived."
+
+    - "%s pops in, trash talkin’ before saying hi."
+    - "Pedal to the metal! %s just joined."
+    - "Portal detected: %s just entered."
+    - "Pull gently… %s entered the snow."
+    - "Paws on the ground… %s entered."
+    - "Persistence alert: %s has arrived."
+
+
+    - "%s revs up and races in, look out—they’re infamous."
+    - "Rambley approves: %s has arrived."
+    - "Run, run, %s just joined."
+    - "Rage incoming—%s has appeared."
+    - "Redline reached: %s has joined the danger zone."
+    - "Run for it… %s is off the rails."
+
+    - "%s spawned — craving abandonment already."
+    - "%s shows up — another day. Another mistake."
+    - "%s scrolls, laughs, and lands—intoxicating as ever."
+    # "%s shows up—ghostly but still part of the toast."
+    - "%s swims ashore like a stranded sunfish."
+    - "%s stumbles in, vanity butchered, pride intact."
+    - "%s slinks in humming a silly song out of tune."
+    - "%s steps in with the memory of a broken chorus."
+    - "%s spawned — craving abandonment already."
+    - "%s shows up — another day. Another mistake."
+    - "%s speeds past last place—no one can keep up."
+    - "%s shows up, carrying handmade letters and fragile hearts."
+    - "Suspended hearts rejoice—%s is here."
+    - "Single or many? %s has joined the horde."
+    - "Shadow in the daylight, %s has arrived."
+    - "System blow imminent: %s is online."
+    - "%s says they’re not okay… but okay."
+    - "Silent type spotted: %s entered."
+    - "Startup detected: %s has logged in like XP."
+    - "Sneaky fox alert: %s arrived."
+    - "Snow beats: %s is here."
+    - "Scratch incoming: %s just joined."
+    - "Snow alert: %s is packing heat."
+
+    - "TAANK! %s is stomping in."
+    - "Testing, testing… %s has logged in."
+    - "The vibe just escalated—%s arrived."
+    - "Time to misbehave—%s entered."
+    - "Trapped vibes: %s just joined."
+    - "Target spotted: %s has drawn their weapon."
+    - "%s tried hard… now they’ve joined."
+
+    - "%s voice can be heard, but there's no way to speak."
+    - "Virus detected: %s is online. Back up your files!"
+
+    - "%s walks in, swearing they forgot you exist."
+    - "%s was claimed by Cone and forced to linger in the rain for days."
+    - "Whirr! %s arrives, chaos in motion."
+    - "Warning! %s has infected the server."
+    - "Warning: %s just triggered the alarm."
+    - "%s waits patiently, even in the rain."
+    - "We’re not unreasonable, but %s is hungry." # for fish
+    - "Welcome back to Indigo Park, %s!"
+    - "Welcome to the new age: %s has joined."
+    - "Watch out… %s just unleashed their monster."
+    - "Watch your back, %s is scheming."
+    - "Wild fox spotted: %s has arrived."
+    - "Welcome to the sleek lobby, %s."
+    - "Warning: %s has gone AWOL!"
+    - "XP alert: %s is booting up in the lobby."
+    - "Yawning incoming: %s has arrived."
+
+# Default: 0
+Leash-Check-Delay: 0

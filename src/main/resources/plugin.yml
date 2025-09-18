@@ -1,0 +1,15 @@
+name: snow2code_plugin
+description: A snowy plugin
+author: 'snow2code'
+website: https://snow2code.infy.uk
+version: ${version} # '1.0-SNAPSHOT'
+main: org.snow2code.plugin.Main
+api-version: '1.21'
+
+
+commands:
+  snow2code:
+    description: Base command for Snowy's Plugin
+    usage: /snowy <reload>
+    aliases: [snowy]
+    # permission: snowy.admin

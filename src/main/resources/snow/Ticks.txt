@@ -1,0 +1,5 @@
+1 millisecond       0.02     Game tick
+1 second            20       Game tick
+1 minute            1200     Game tick
+1 hour              72000    Game tick
+1 day               1728000  Game tick
