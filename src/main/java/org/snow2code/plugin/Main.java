@@ -6,7 +6,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.snow2code.REPO__SemiLogger;
 import org.snow2code.plugin.Recipes.*;
 import org.snow2code.plugin.Events.*;
 
@@ -15,15 +14,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.snow2code.REPO__SemiFunc;
+import org.snow2code.REPO__SemiLogger;
 
 public final class Main extends JavaPlugin {
     public static JavaPlugin Plugin;
+
+    public static REPO__SemiFunc SemiFunc;
     public static REPO__SemiLogger SemiLogger;
     public static Map<String, List<String>> joinMessages = new HashMap<>();
 
-    // Master list of custom items
     private final List<CustomItem> customItems = new ArrayList<>();
-
     public static Map<String, List<String>> getJoinMessages() {
         return joinMessages;
     }
@@ -47,6 +48,9 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        List<String> startupLog = new ArrayList<>();
+
+        // Now actually do shit
         saveDefaultConfig();
         loadMessages();
 
@@ -54,30 +58,42 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Consume(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
 
-        //******Add items here (only once!)********
+
+
+        //******        Add items          ********
         //
         customItems.add(new YonFish());
         // customItems.add(new ChillElixir());
         // customItems.add(new FrostyBrew());
         // customItems.add(new SnowNectar());
         // customItems.add(new ());
-        // customItems.add(new ());
-        // customItems.add(new ());
-        // customItems.add(new ());
-        // customItems.add(new ());
-        // customItems.add(new ());
-        // customItems.add(new ());
-        // customItems.add(new ());
         //
         //*****************************************
 
-        // Register recipes in loop
+        // Register em all!
         for (CustomItem item : customItems) {
             Recipe recipe = item.createRecipe(this);
             Bukkit.addRecipe(recipe);
-            SemiLogger.Info("Registered recipe: " + item.getKey(this).getKey());
+            startupLog.add("Registered new recipe: " + item.getKey(this).getKey());
+//            SemiLogger.Info("Registered recipe: " + item.getKey(this).getKey());
         }
 
+
+        // We're done here, log the startupLog
+        SemiLogger.Log("******************************************");
+        SemiLogger.Log("");
+        SemiLogger.Log("Loading Snowy's Plugin (Main) version " + getPluginMeta().getVersion());
+        if (getPluginMeta().getVersion().contains("-DEV")) {
+            SemiLogger.Log("");
+            SemiLogger.Log("    --Development Build");
+        }
+        SemiLogger.Log("");
+        SemiLogger.Log("");
+        for (String line : startupLog) {
+            SemiLogger.Log(line);
+        }
+        SemiLogger.Log("");
+        SemiLogger.Log("******************************************");
     }
 
     @Override
@@ -90,7 +106,7 @@ public final class Main extends JavaPlugin {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         SemiLogger.Info("cmdName: " + cmd.getName());
         if (cmd.getName().equalsIgnoreCase("snow2code")) {
-            SemiLogger.Info(args);
+            SemiLogger.Info(args[0]);
             if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
                 // if (!sender.hasPermission("snow2code.admin")) {
                 //     sender.sendMessage(ChatColor.RED + "You don't have permission.");

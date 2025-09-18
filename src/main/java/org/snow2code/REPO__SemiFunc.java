@@ -46,4 +46,27 @@ public class REPO__SemiFunc {
 //
 //        return "";
 //    }
+
+//    public static String[] InsertIntoArray(String[] arr, int index, String element) {
+//        String[] newArr = new String[arr.length + 1];
+//
+//        System.arraycopy(arr, 0, newArr, 0, index); // Copy elements before index
+//        newArr[index] = element; // Insert new element
+//        System.arraycopy(arr, index, newArr, index + 1, arr.length - index); // Copy rest
+//
+//        return newArr;
+//    }
+
+//    /**
+//     *
+//     * @param arr The array to append to
+//     * @param element The data/value to insert
+//     * @return The array with the data inserted at the end
+//     */
+//    public static String[] AppendToArray(String[] arr, String element) {
+//        String[] newArr = new String[arr.length + 1];
+//        System.arraycopy(arr, 0, newArr, 0, arr.length);
+//        newArr[arr.length] = element; // put at the end
+//        return newArr;
+//    }
 }

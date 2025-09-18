@@ -1,14 +1,11 @@
 name: snow2code_plugin
+display_name: 'Test'
 description: A snowy plugin
 author: 'snow2code'
 website: https://snow2code.infy.uk
 version: ${version} # '1.0-SNAPSHOT'
 main: org.snow2code.plugin.Main
 api-version: '1.21'
-
-libraries: [
-  de.fabiexe.paperui
-]
 
 commands:
   snow2code:
