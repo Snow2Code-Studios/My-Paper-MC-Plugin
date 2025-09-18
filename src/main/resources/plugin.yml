@@ -6,6 +6,9 @@ version: ${version} # '1.0-SNAPSHOT'
 main: org.snow2code.plugin.Main
 api-version: '1.21'
 
+libraries: [
+  de.fabiexe.paperui
+]
 
 commands:
   snow2code:

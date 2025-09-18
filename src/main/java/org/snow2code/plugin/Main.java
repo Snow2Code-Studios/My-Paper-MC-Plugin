@@ -90,6 +90,7 @@ public final class Main extends JavaPlugin {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         SemiLogger.Info("cmdName: " + cmd.getName());
         if (cmd.getName().equalsIgnoreCase("snow2code")) {
+            SemiLogger.Info(args);
             if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
                 // if (!sender.hasPermission("snow2code.admin")) {
                 //     sender.sendMessage(ChatColor.RED + "You don't have permission.");
