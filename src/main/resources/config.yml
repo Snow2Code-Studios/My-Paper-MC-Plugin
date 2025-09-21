@@ -329,8 +329,20 @@ join-messages:
   default:
     - "When fox's fly."
 
+recipes:
+  yonfish_test: true
+
 # Default: 0
 #Leash-Check-Delay: 0
+
+# Use a certain Player Leashing system.
+# All systems:
+#  SoulLeash
+#  Technologic
+leash-system: "SoulLeash"
+
+# If true. Give them all custom crafting recipes
+# Used when a player joins
 give-custom-recipes: true
 
 snow2code-player:

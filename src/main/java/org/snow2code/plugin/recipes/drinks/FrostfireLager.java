@@ -10,7 +10,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.snow2code.plugin.CustomItem;
+import org.snow2code.util.interfaces.CustomItem;
 
 import java.util.List;
 

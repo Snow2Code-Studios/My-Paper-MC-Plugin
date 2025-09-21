@@ -1,16 +1,10 @@
-package org.snow2code.playerleash;
+package org.snow2code.playerleash.system.technologic;
 
-import org.bukkit.event.block.Action;
 import io.papermc.paper.entity.Leashable;
-import net.kyori.adventure.text.Component;
 import org.bukkit.*;
-import org.bukkit.Particle.DustOptions;
-import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Directional;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LeashHitch;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,13 +23,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.Team;
-import org.bukkit.util.Vector;
 import org.snow2code.util.SemiFunc;
 import org.snow2code.util.SemiLogger;
 
@@ -58,22 +47,23 @@ public class LeashListener implements Listener {
         return "they";
     }
 
-    // --- Event handlers below are mostly direct ports ---
+    /* --- Event handlers below are mostly direct ports --- */
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     private void onPlayerInteractAtEntity(PlayerInteractAtEntityEvent event)
     {
-        if (!(event.getRightClicked() instanceof Player interacted)) return;
+        if (!(event.getRightClicked() instanceof Player pet)) return;
 
-        HashSet<Leashable> interactedLeashables = PlayerLeash.leashed.get(interacted);
-        if (event.getHand() == EquipmentSlot.HAND && interactedLeashables != null)
+        HashSet<Leashable> petLeashables = PlayerLeash.leashed.get(pet);
+        if (event.getHand() == EquipmentSlot.HAND && petLeashables != null)
         {
-            for (Leashable leashedEntity : interactedLeashables)
+            for (Leashable leashedEntity : petLeashables)
             {
                 if (leashedEntity.isLeashed() && leashedEntity.getLeashHolder() == event.getPlayer())
                 {
-                    event.getPlayer().sendMessage(ChatColor.RED + "You abandoned " + ChatColor.AQUA + interacted.getName() + ChatColor.RED + ", now she can wander freely.");
-                    PlayerLeash.unleashFrom(interacted, leashedEntity, true);
+                    String petPrononus = getPronouns(pet);
+                    event.getPlayer().sendMessage(ChatColor.RED + "You abandoned " + ChatColor.AQUA + pet.getName() + ChatColor.RED + ", now " + petPrononus + " can wander freely.");
+                    PlayerLeash.unleashFrom(pet, leashedEntity, true);
                     return;
                 }
             }
@@ -87,21 +77,21 @@ public class LeashListener implements Listener {
             String uuidStr = item.getItemMeta().getPersistentDataContainer().get(PlayerLeash.targetedLeadKey, PersistentDataType.STRING);
             if (uuidStr != null)
             {
-                if (uuidStr.equals(interacted.getUniqueId().toString())) return;
+                if (uuidStr.equals(pet.getUniqueId().toString())) return;
 
                 var meta = item.getItemMeta();
-                meta.setLore(PlayerLeash.getTargetedLeadDesc(interacted));
+                meta.setLore(PlayerLeash.getTargetedLeadDesc(pet));
                 meta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
-                meta.getPersistentDataContainer().set(PlayerLeash.targetedLeadKey, PersistentDataType.STRING, interacted.getUniqueId().toString());
+                meta.getPersistentDataContainer().set(PlayerLeash.targetedLeadKey, PersistentDataType.STRING, pet.getUniqueId().toString());
                 item.setItemMeta(meta);
                 event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 1.0F, 1.0F);
                 return;
             }
         }
 
-        PlayerLeash.leash(event.getPlayer(), interacted);
+        PlayerLeash.leash(event.getPlayer(), pet);
         SemiFunc.SendMessageToPlayer(event.getPlayer(),
-                ChatColor.LIGHT_PURPLE + "You leashed " + ChatColor.AQUA + interacted.getName() + ChatColor.LIGHT_PURPLE + ", now she's yours!"
+                ChatColor.LIGHT_PURPLE + "You leashed " + ChatColor.AQUA + pet.getName() + ChatColor.LIGHT_PURPLE + ", now she's yours!"
         );
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
         {
@@ -141,7 +131,8 @@ public class LeashListener implements Listener {
     private void onItemDispense(BlockDispenseEvent event)
     {
         SemiLogger.Debug("The pet was forced to stay by " + event.getBlock().getType());
-//        sendMessage("§dThe little pet is obediently staying here =v=")
+    //    sendMessage("§dThe little pet is obediently staying here =v=")
+
         if (!event.getItem().hasItemMeta()) return;
         String uuidStr = event.getItem().getItemMeta().getPersistentDataContainer().get(PlayerLeash.targetedLeadKey, PersistentDataType.STRING);
 
@@ -189,7 +180,6 @@ public class LeashListener implements Listener {
     {
         if (PlayerLeash.leashed.containsKey(event.getPlayer()))
         {
-            /// Leashed 
             event.setCancelled(true);
         }
     }
@@ -258,17 +248,19 @@ public class LeashListener implements Listener {
         }
     }
 
-    // @EventHandler
-    // public void onPlayerRightClickFence(PlayerInteractEvent event)
-    // {
-    //     if (event.getHand() != EquipmentSlot.HAND) return;
-    //     if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-    //     if (event.getClickedBlock() == null || !isFence(event.getClickedBlock().getType())) return;
-    //     // if (event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
+    /*
+    @EventHandler
+    public void onPlayerRightClickFence(PlayerInteractEvent event)
+    {
+        if (event.getHand() != EquipmentSlot.HAND) return;
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+        if (event.getClickedBlock() == null || !isFence(event.getClickedBlock().getType())) return;
+        // if (event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
 
 
-    //     event.getPlayer().sendMessage("onPlayerRightClickFence");
-    // }
+        event.getPlayer().sendMessage("onPlayerRightClickFence");
+    }
+    */
 
     private boolean isFence(Material material) {
         return material.name().endsWith("_FENCE");

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.snow2code.local.SemiSnow;
-import org.snow2code.plugin.CustomItem;
+import org.snow2code.util.interfaces.CustomItem;
 import org.snow2code.plugin.Main;
 import org.snow2code.util.SemiFunc;
 import org.snow2code.util.SemiLogger;

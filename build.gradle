@@ -6,10 +6,13 @@ plugins {
 group = project.group
 version = project.version
 
-
-//      Major   Minor   Build   Revision
-//       0       0        0        0
-
+/*
+Build ver thingy:
+    Major
+    Minor
+    Build
+    Revision
+*/
 
 repositories {
     mavenCentral()

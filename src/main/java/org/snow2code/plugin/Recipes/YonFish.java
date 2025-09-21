@@ -13,12 +13,17 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.snow2code.plugin.CustomItem;
+import org.snow2code.util.SemiLogger;
+import org.snow2code.util.interfaces.CustomItem;
+import org.snow2code.util.interfaces.CustomRecipe;
 
 import java.util.List;
 
-public class YonFish implements CustomItem {
+public class YonFish implements CustomRecipe {
+    public boolean enabled = true;
+
     public static ItemStack hiimyonkagorandilikefish;
+
     private static final String ITEM_NAME = "Yon’s Fish";
     private static final List<Component> LORE = List.of(
             Component.text("").decoration(TextDecoration.ITALIC, false),
@@ -26,7 +31,8 @@ public class YonFish implements CustomItem {
     );
 
     @Override
-    public ItemStack createItem() {
+    public void register()
+    {
         ItemStack fish = new ItemStack(Material.SALMON);
         ItemMeta meta = fish.getItemMeta();
 
@@ -48,24 +54,37 @@ public class YonFish implements CustomItem {
 
         fish.setItemMeta(meta);
 
-        hiimyonkagorandilikefish = fish;
-        return fish;
-    }
-
-    @Override
-    public ShapelessRecipe createRecipe() {
-        ShapelessRecipe recipe = new ShapelessRecipe(getKey(), createItem());
+        ShapelessRecipe recipe = new ShapelessRecipe(getKey(), fish);
         recipe.addIngredient(Material.SALMON);
         recipe.addIngredient(Material.COOKED_SALMON);
-//        ShapedRecipe recipe = new ShapedRecipe(getKey(), createItem());
-//        recipe.shape("ABX", "XXX", "XXX");
-//        recipe.setIngredient('A', Material.SALMON);
-//        recipe.setIngredient('B', Material.COOKED_SALMON);
-        return recipe;
+
+        hiimyonkagorandilikefish = fish;
+
+        plugin.getServer().addRecipe(recipe);
     }
 
     @Override
     public NamespacedKey getKey() {
+//        return "yonkagor_fish";
         return new NamespacedKey(plugin, "yonkagor_fish");
     }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+//    public static ItemStack hiimyonkagorandilikefish;
+//
+//    @Override
+//    public ItemStack createItem() {
+//    }
+//
+//    @Override
+//    public ShapelessRecipe createRecipe() {
+//    }
+//
+//    @Override
+//    public NamespacedKey getKey() {
+//    }
 }

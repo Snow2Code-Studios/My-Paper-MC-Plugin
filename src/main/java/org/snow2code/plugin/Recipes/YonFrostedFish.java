@@ -14,7 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.persistence.PersistentDataType;
 
-import org.snow2code.plugin.CustomItem;
+import org.snow2code.util.interfaces.CustomItem;
 
 import java.util.List;
 
