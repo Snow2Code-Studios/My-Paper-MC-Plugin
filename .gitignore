@@ -1,3 +1,6 @@
+#VSCode
+.vscode/
+
 # IntelliJ IDEA
 .idea/
 
@@ -12,6 +15,9 @@ gradle/
 
 # some stuff that wont be released
 ._snowy/
+
+# Ignore slly shit :3
+src/main/java/org/snow2code/local/
 
 
 ### .gitignore - Java
