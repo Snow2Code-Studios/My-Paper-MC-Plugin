@@ -1,4 +1,4 @@
-package org.snow2code.plugin.Recipes;
+package org.snow2code.plugin.recipes;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -8,6 +8,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.persistence.PersistentDataType;
@@ -17,6 +18,7 @@ import org.snow2code.plugin.CustomItem;
 import java.util.List;
 
 public class YonFish implements CustomItem {
+    public static ItemStack hiimyonkagorandilikefish;
     private static final String ITEM_NAME = "Yon’s Fish";
     private static final List<Component> LORE = List.of(
             Component.text("").decoration(TextDecoration.ITALIC, false),
@@ -24,7 +26,7 @@ public class YonFish implements CustomItem {
     );
 
     @Override
-    public ItemStack createItem(JavaPlugin plugin) {
+    public ItemStack createItem() {
         ItemStack fish = new ItemStack(Material.SALMON);
         ItemMeta meta = fish.getItemMeta();
 
@@ -32,6 +34,7 @@ public class YonFish implements CustomItem {
         meta.lore(LORE);
 
         meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "rarity"), PersistentDataType.STRING, "epic");
+        meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "custom_key"), PersistentDataType.STRING, "yonkagor_fish");
 
         meta.addEnchant(Enchantment.KNOCKBACK, 3, true);
         meta.addEnchant(Enchantment.SHARPNESS, 17, true);
@@ -44,20 +47,25 @@ public class YonFish implements CustomItem {
         meta.setFood(food);
 
         fish.setItemMeta(meta);
+
+        hiimyonkagorandilikefish = fish;
         return fish;
     }
 
     @Override
-    public ShapedRecipe createRecipe(JavaPlugin plugin) {
-        ShapedRecipe recipe = new ShapedRecipe(getKey(plugin), createItem(plugin));
-        recipe.shape("ABX", "XXX", "XXX");
-        recipe.setIngredient('A', Material.SALMON);
-        recipe.setIngredient('B', Material.COOKED_SALMON);
+    public ShapelessRecipe createRecipe() {
+        ShapelessRecipe recipe = new ShapelessRecipe(getKey(), createItem());
+        recipe.addIngredient(Material.SALMON);
+        recipe.addIngredient(Material.COOKED_SALMON);
+//        ShapedRecipe recipe = new ShapedRecipe(getKey(), createItem());
+//        recipe.shape("ABX", "XXX", "XXX");
+//        recipe.setIngredient('A', Material.SALMON);
+//        recipe.setIngredient('B', Material.COOKED_SALMON);
         return recipe;
     }
 
     @Override
-    public NamespacedKey getKey(JavaPlugin plugin) {
+    public NamespacedKey getKey() {
         return new NamespacedKey(plugin, "yonkagor_fish");
     }
 }

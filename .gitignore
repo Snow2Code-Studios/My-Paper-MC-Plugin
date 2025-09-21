@@ -1,40 +1,18 @@
-#VSCode
 .vscode/
 
-# IntelliJ IDEA
 .idea/
-
-# Gradle
 .gradle/
-
-# Build
 build/
-
-# Gradle (again)
+bin/
 gradle/
-
-# some stuff that wont be released
 ._snowy/
-
-# Ignore slly shit :3
 src/main/java/org/snow2code/local/
 
 
-### .gitignore - Java
-
-# Compiled class file
 *.class
-
-# Log file
 *.log
-
-# BlueJ files
 *.ctxt
-
-# Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.nar

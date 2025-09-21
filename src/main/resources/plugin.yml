@@ -7,9 +7,14 @@ version: ${version} # '1.0-SNAPSHOT'
 main: org.snow2code.plugin.Main
 api-version: '1.21'
 
-commands:
-  snow2code:
-    description: Base command for Snowy's Plugin
-    usage: /snowy <reload>
-    aliases: [snowy]
-    # permission: snowy.admin
+#commands:
+#  snowy:
+#    description: Base command for Snowy's Plugin
+#    usage: /snowy <reload>
+#    aliases: [snowy]
+#    # permission: snowy.admin
+
+permissions:
+  snow2code.admin:
+    description: Snow2Code Admin Permission
+    default: op

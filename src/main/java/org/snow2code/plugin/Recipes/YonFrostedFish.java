@@ -1,4 +1,4 @@
-package org.snow2code.plugin.Recipes;
+package org.snow2code.plugin.recipes;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -7,11 +7,13 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.java.JavaPlugin;
+
 import org.snow2code.plugin.CustomItem;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public class YonFrostedFish implements CustomItem {
     );
 
     @Override
-    public ItemStack createItem(JavaPlugin plugin) {
+    public ItemStack createItem() {
         ItemStack fish = new ItemStack(Material.SALMON);
         ItemMeta meta = fish.getItemMeta();
 
@@ -32,6 +34,7 @@ public class YonFrostedFish implements CustomItem {
         meta.lore(LORE);
 
         meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "rarity"), PersistentDataType.STRING, "epic");
+        meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "custom_key"), PersistentDataType.STRING, "yonfish_nausea");
 
         meta.addEnchant(Enchantment.KNOCKBACK, 3, true);
         meta.addEnchant(Enchantment.SHARPNESS, 17, true);
@@ -48,19 +51,16 @@ public class YonFrostedFish implements CustomItem {
     }
 
     @Override
-    public ShapedRecipe createRecipe(JavaPlugin plugin) {
-        ShapedRecipe recipe = new ShapedRecipe(getKey(plugin), createItem(plugin));
-        recipe.shape("ABC", "XXX", "XXX");
+    public ShapelessRecipe createRecipe() {
+        ShapelessRecipe recipe = new ShapelessRecipe(getKey(), createItem());
+        recipe.addIngredient(new RecipeChoice.ExactChoice(YonFish.hiimyonkagorandilikefish));
+        recipe.addIngredient(new RecipeChoice.MaterialChoice(Material.TROPICAL_FISH, Material.COD));
 
-        // A - YonFish (not a item nativily in the game, plugin crafting recipe)
-        // B - Any achloal (e.g Snowfall Shot)
-
-        // recipe.setIngredient('A', Material.whatever);
         return recipe;
     }
 
     @Override
-    public NamespacedKey getKey(JavaPlugin plugin) {
+    public NamespacedKey getKey() {
         return new NamespacedKey(plugin, "yonfish_nausea");
     }
 }

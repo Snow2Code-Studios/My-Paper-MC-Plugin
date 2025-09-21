@@ -1,4 +1,4 @@
-package org.snow2code.plugin.Events;
+package org.snow2code.plugin.events;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -11,16 +11,12 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.snow2code.REPO__SemiFunc;
 
-public class Consume implements Listener {
-    private final JavaPlugin plugin;
-    private final REPO__SemiFunc SemiFunc;
+import org.snow2code.plugin.Main;
+import org.snow2code.util.SemiLogger;
 
-    public Consume(JavaPlugin plugin) {
-        this.plugin = plugin;
-        this.SemiFunc = new REPO__SemiFunc(this.plugin);
-    }
+public class ConsumeListener implements Listener {
+    private static JavaPlugin plugin = Main.Plugin;
 
     @EventHandler
     public void onConsume(PlayerItemConsumeEvent event) {
@@ -36,6 +32,8 @@ public class Consume implements Listener {
 
 
         if ("drink".equals(rarity)) {
+            SemiLogger.Debug("Rarity Equal to drink");
+
             event.setCancelled(false); // still “consume” the bottle
             Player player = event.getPlayer();
 
@@ -47,7 +45,6 @@ public class Consume implements Listener {
             int duration = 0;
 
             switch (key) {
-
                 /*
                     Frosty Brew	" I ", " B ", " S "	Glass Bottle (B), Snow Block (S), Sugar (I)
                     Snow Nectar	" I ", " B ", " D "	Glass Bottle, Ice (I), Blue Dye (D)
@@ -63,92 +60,74 @@ public class Consume implements Listener {
                     Frozen Delight	" L ", " S ", " B "	Glass Bottle, Lilac Dye (L), Snow Block (S)
                 */
                 
-                case "frosty_brew" -> {
+                case "frosty_brew":
                     // 180, 220, 255
                     // "Looks dangerous… but feels refreshing."
 
                     // Glass Bottle + Snow Block + Sugar " I ", " B ", " S "
                     duration = 20*25;
-                }
-                case "snow_nectar" -> {
+                    break;
+                case "snow_nectar":
                     // 240, 250, 255
                     // "A sweet chill that dances on your tongue."
 
                     // Glass Bottle + Ice + Blue Dye " I ", " B ", " D "
                     duration = 20*20;
-                }
-                case "chill_elixir" -> {
+                    break;
+                case "chill_elixir":
                     // 150, 200, 255
                     // "One sip and the world slows down."
 
                     // Glass Bottle + Snow Block + Sugar " S ", " B ", " S "
                     duration = 20*30;
-                }
+                    break;
 
-                case "snowdrift_ale" -> {
+                case "snowdrift_ale":
 //                    210, 240, 255
                     // "Smooth, but leaves a chill in your veins."
 
                     // Glass Bottle + Snow Block + Sugar " S ", " S ", " B "
                     duration = 20*25;
-                }
-                case "frostfire_lager" -> {
+                    break;
+                case "frostfire_lager":
                     // 50, 100, 255
                     // "A bold sip that tingles like frost and fire combined."
 
                     // Glass Bottle + Ice + Sugar " I ", " S ", " B "
                     duration = 20*20;
-                }
-                case "glacial_whiskey" -> {
+                    break;
+                case "glacial_whiskey":
                     // 0, 150, 180
                     // "Old and icy… warms the soul but blurs the mind."
 
                     // Glass Bottle + Ice Block + Sugar " I ", " B ", " S "
                     duration = 20*30;
-                }
-                case "snowcap_cider" -> {
-                    // 255, 255, 240
-                    // "Sweet, bubbly, and dangerously cold."
-
-                    // Glass Bottle + Snowball + Sugar " S ", " B ", " S "
+                    break;
+                case "snowcap_cider":
                     duration = 20*20;
-                }
-                case "frosty_night" -> {
+                    break;
+                case "frosty_night":
                     // 20, 30, 100
                     // "One sip, and the world slows under the moonlight."
 
                     // Glass Bottle + Snow Block + Sugar " S ", " B ", " S "
                     duration = 20*25;
-                }
-                case "snowbound_spirit" -> {
-                    // 100, 255, 255
-                    // "The wind of the frozen peaks in a bottle."
-
-                    // Glass Bottle + Ice + Blue Dye " B ", " I ", " D "
+                    break;
+                case "snowbound_spirit":
                     duration = 20*30;
-                }
-                case "iceberg_shiver" -> {
-                    // 150, 255, 255
-                    // "A crisp chill that makes your head spin."
-
-                    // Glass Bottle + Ice Block + Sugar " B ", " I ", " S "
+                    break;
+                case "iceberg_shiver":
                     duration = 20*20;
-                }
-                case "snowfall_shot" -> {
-                    // 240, 250, 255
-                    // "Tiny but mighty; a snowstorm in a sip."
-
-                    // Glass Bottle + Snowball + Sugar " S ", " B ", " S "
+                    break;
+                case "snowfall_shot":
                     duration = 20*10;
-                }
-                case "frozen_delight" -> {
-                    // 200, 180, 255
-                    // "Sweet, cold, and disorienting."
-
-                    // Glass Bottle + Lilac Dye + Snow Block " L ", " S ", " B "
+                    break;
+                case "frozen_delight":
                     duration = 20*25;
-                }
-                default -> duration = 20*15;
+                    break;
+                default:
+                    duration = 20*15;
+                    break;
             }
 
             player.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, duration, 1, false, false));
@@ -162,18 +141,21 @@ public class Consume implements Listener {
 
             int duration = 0;
 
+            SemiLogger.Debug("key " + key);
+            SemiLogger.Debug("key1 " + meta.getItemModel());
+
             switch (key) {
-                case "yonfish_nausea" -> {
-                    /// YonFish + Alchol + Sugar
+                case "yonfish_nausea":
+                    /// YonFish + Alchol
                     duration = 20*25;
                     player.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, duration, 1, false, false));
-                }
-                default -> {
+                    break;
+                default:
                     player.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, 1000, 1, false, false));
                     player.addPotionEffect(new PotionEffect(PotionEffectType.INSTANT_HEALTH, 1, 5, false, false));
                     player.addPotionEffect(new PotionEffect(PotionEffectType.LUCK, 1000, 1, false, false));
                     player.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 1000, 2, false, false));
-                }
+                    break;
             }
         }
     }

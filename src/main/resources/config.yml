@@ -1,5 +1,5 @@
 join-messages:
-  ConeheadZombiee:
+  REDACTED:
     - "%s has entered the room... Snowy's BF is here, behave yourselves."
     - "%s has entered the chat. Snowcone alert. Respect or perish."
     - "%s walked in. Snowy’s here too, probably attached to his hip."
@@ -326,5 +326,20 @@ join-messages:
     - "XP alert: %s is booting up in the lobby."
     - "Yawning incoming: %s has arrived."
 
+  default:
+    - "When fox's fly."
+
 # Default: 0
-Leash-Check-Delay: 0
+#Leash-Check-Delay: 0
+give-custom-recipes: true
+
+snow2code-player:
+  scale: 0.65
+  attack-damage: 2
+  max-health: 28.0 # 40 was WAYYY too much!
+  walk-speed: 0.4f
+  knockback: 0.5 # 1
+  burn-time: 2
+  jump-bonus: 0.7
+  water-movement-efficiency: 1
+  sneak-speed: 0.4
