@@ -15,18 +15,14 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.Map;
 import java.util.UUID;
 
-import org.snow2code.plugin.playerleashing.soulleash.LeashMain;
-import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.leashMap;
+import static org.snow2code.plugin.Snow2Code_Plugin.*;
+import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.*;
 
 public class FoodShare implements Listener {
 
-    private final JavaPlugin plugin = LeashMain.plugin;
     private final long COOLDOWN_TIME = 1000L; // 1秒冷却时间
     private final Map<UUID, Long> playerCooldowns = new java.util.HashMap<>();
 
-    public FoodShare() {
-
-    }
 
     @EventHandler
     public void onFeedPartner(PlayerInteractEntityEvent event) {

@@ -25,17 +25,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import org.snow2code.plugin.playerleashing.soulleash.LeashMain;
+import static org.snow2code.plugin.Snow2Code_Plugin.*;
+import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.*;
 
 public class Helper implements Listener {
-
-    private static JavaPlugin plugin = LeashMain.plugin;
 
     // key: 玩家UUID，value: 绑定的僵尸实体UUID
     private static final Map<UUID, UUID> playerToLeashEntity = new HashMap<>();
 
     public Helper() {
-//        this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

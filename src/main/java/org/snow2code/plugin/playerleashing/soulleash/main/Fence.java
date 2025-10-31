@@ -16,25 +16,23 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
-
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
-//org.snow2code.plugin.playerleashing.soulleash.LeashMain
-import org.snow2code.plugin.playerleashing.soulleash.LeashMain;
+
+import org.snow2code.util.*;
+import static org.snow2code.plugin.Snow2Code_Plugin.*;
 import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.*;
 
 public class Fence implements Listener {
     private static final Map<UUID, Location> fenceBoundPlayers = new HashMap<>();
     public static File fenceLeashFile;
     public static FileConfiguration fenceLeashDataConfig;
-    private static JavaPlugin plugin = LeashMain.plugin;
 
     public Fence() {
         Bukkit.getPluginManager().registerEvents(this, plugin);
@@ -66,7 +64,7 @@ public class Fence implements Listener {
             }
         }
         if (boundAny) {
-            e.getPlayer().sendMessage("§d小宠物乖乖呆在这里了=v=");
+            SemiFunc.LeashMessage("obediently stay", "chat", e.getPlayer(), e.getPlayer(), 0);
         }
     }
 
@@ -116,7 +114,7 @@ public class Fence implements Listener {
 
 
         leash.startLeashTask(master, target); // 恢复跟随
-        master.sendMessage("§d继续带着小宠物玩=v=");
+        master.sendMessage("§dContinue playing with your little pet =v= (TODO: update this to use SemiFunc.LeashMessage())");
     }
 
     public void startFenceLeashTask(UUID sUUID, UUID mUUID, Location fenceLocation) {
@@ -298,12 +296,16 @@ public class Fence implements Listener {
             leashTasks.get(mUUID).cancel();
             leashTasks.remove(mUUID);
         }
+
         Helper.removeLeash(mUUID);
         fenceBoundPlayers.remove(mUUID);
         leashDataConfig.set("fence_bounds." + mUUID, null);
+
         saveLeashData();
+
         Player master = Bukkit.getPlayer(sUUID);
         Player member = Bukkit.getPlayer(mUUID);
+
         if (master != null && member != null && master.isOnline() && member.isOnline()) {
             leash.startLeashTask(master, member);
         }

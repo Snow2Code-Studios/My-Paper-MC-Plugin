@@ -1,51 +1,65 @@
 package org.snow2code.plugin.recipes.drinks;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
+import java.util.List;
+
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.snow2code.util.interfaces.CustomItem;
 
-import java.util.List;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 
-public class SnowboundSpirit implements CustomItem {
+import org.snow2code.util.SemiFunc;
+import org.snow2code.util.interfaces.CustomRecipe;
+import static org.snow2code.plugin.Snow2Code_Plugin.*;
+
+public class SnowboundSpirit implements CustomRecipe {
+    public boolean enabled = true;
 
     @Override
-    public ItemStack createItem() {
-        ItemStack potion = new ItemStack(Material.POTION);
-        PotionMeta meta = (PotionMeta) potion.getItemMeta();
+    public void register() {
+        ItemStack drink = new ItemStack(Material.POTION);
+        PotionMeta meta = (PotionMeta) drink.getItemMeta();
 
-        meta.displayName(Component.text("Snowbound Spirit").color(NamedTextColor.DARK_AQUA));
+        meta.displayName(Component.text("Snowbound Spirit").color(NamedTextColor.DARK_AQUA).decoration(TextDecoration.ITALIC, false));
         meta.lore(List.of(Component.text("The wind of the frozen peaks in a bottle.").color(NamedTextColor.GRAY)));
 
         meta.setColor(Color.fromRGB(100, 255, 255));
 
-        meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "rarity"), PersistentDataType.STRING, "drink");
+        meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "rarity"), PersistentDataType.STRING, "epic");
         meta.getPersistentDataContainer().set(new NamespacedKey(plugin, "custom_key"), PersistentDataType.STRING, "snowbound_spirit");
 
-        potion.setItemMeta(meta);
-        return potion;
-    }
+        drink.setItemMeta(meta);
 
-    @Override
-    public ShapelessRecipe createRecipe() {
-        ShapelessRecipe recipe = new ShapelessRecipe(getKey(), createItem());
-        recipe.addIngredient(Material.GLASS_BOTTLE);
-        recipe.addIngredient(Material.ICE);
-        recipe.addIngredient(Material.BLUE_DYE);
+        // ShapelessRecipe recipe = new ShapelessRecipe(getKey(), drink);
+        ShapedRecipe recipe = new ShapedRecipe(getKey(), drink);
+        recipe.shape("ABC", "XXX", "XXX");
 
-        return recipe;
+        recipe.setIngredient('A', Material.GLASS_BOTTLE);
+        recipe.setIngredient('B', Material.ICE);
+        recipe.setIngredient('C', Material.BLUE_DYE);
+        
+        // SemiFunc. = drink;
+
+        server.addRecipe(recipe);
     }
 
     @Override
     public NamespacedKey getKey() {
         return new NamespacedKey(plugin, "snowbound_spirit");
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 }

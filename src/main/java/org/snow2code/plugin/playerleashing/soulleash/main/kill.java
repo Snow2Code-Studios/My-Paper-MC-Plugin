@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.snow2code.plugin.plugin.playerleashing.soulleash.LeashMain;
+import org.snow2code.plugin.playerleashing.soulleash.LeashMain;
+import static org.snow2code.plugin.Snow2Code_Plugin.*;
 import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.*;
 import static org.snow2code.plugin.playerleashing.soulleash.main.leash.startLeashTask;
 
@@ -25,7 +26,7 @@ public class kill implements Listener {
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             // -------- 如果玩家是被绑定者（M），先处理 M 的逻辑 -----------
             for (Map.Entry<UUID, List<UUID>> entry : leashMap.entrySet()) {
-                if (getFenceLeashManager().isPlayerOnFence(player)) {
+                if (LeashMain.getFenceLeashManager().isPlayerOnFence(player)) {
                     return; // 取消传送或传送逻辑
                 }
                 if (entry.getValue().contains(playerUUID)) {  // 如果 M 被某个 S 绑定
@@ -45,7 +46,7 @@ public class kill implements Listener {
                 List<UUID> mUUIDs = leashMap.get(playerUUID);  // 获取 S 绑定的所有 M UUID 列表
                 for (UUID mUUID : mUUIDs) {
                     Player m = Bukkit.getPlayer(mUUID);
-                    if (getFenceLeashManager().isPlayerOnFence(m)) {
+                    if (LeashMain.getFenceLeashManager().isPlayerOnFence(m)) {
                         return; // 取消传送或传送逻辑
                     }// 获取每个 M 的玩家对象
                     if (m != null && m.isOnline()) {            // M 在线时才执行

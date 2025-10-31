@@ -1,8 +1,5 @@
 package org.snow2code.plugin.playerleashing.soulleash.main;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,9 +14,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.snow2code.plugin.playerleashing.soulleash.LeashMain;
+import org.snow2code.util.*;
+import static org.snow2code.plugin.Snow2Code_Plugin.*;
 import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.*;
-
 
 public class leash implements Listener {
     // 玩家右键其他实体事件（用于绑定或解绑玩家）
@@ -31,19 +28,19 @@ public class leash implements Listener {
         if (!e.getHand().equals(EquipmentSlot.HAND)) return;
 
         // s：交互发起者（主人）
-        Player s = e.getPlayer();
+        Player master = e.getPlayer();
         // m：被交互者（目标玩家）
         Player m = (Player) e.getRightClicked();
 
         // 权限检查：s 必须拥有使用权限，m 必须允许被拴住
-        if (!s.hasPermission("leashplayers.use")) return;
-        if (!m.hasPermission("leashplayers.leashable")) return;
+//        if (!s.hasPermission("leashplayers.use")) return;
+//        if (!m.hasPermission("leashplayers.leashable")) return;
 
-        UUID sUUID = s.getUniqueId(); // 主人的 UUID
+        UUID sUUID = master.getUniqueId(); // 主人的 UUID
         UUID mUUID = m.getUniqueId(); // 被拴者的 UUID
 
         // ----------- 使用绳子进行绑定逻辑 -----------
-        if (s.getInventory().getItemInMainHand().getType() == Material.LEAD) {
+        if (master.getInventory().getItemInMainHand().getType() == Material.LEAD) {
             // 如果目标玩家已经被绑定，就不重复绑定
             if (isAlreadyBound(mUUID)) return;
             // 若该主人还没有绑定列表，则创建一个
@@ -51,21 +48,23 @@ public class leash implements Listener {
             // 将目标玩家加入主人的绑定列表
             leashMap.get(sUUID).add(mUUID);
             // 保存到配置文件（将 UUID 转为字符串）
-            LeashMain.leashDataConfig.set(
+            leashDataConfig.set(
                     sUUID.toString(),
                     leashMap.get(sUUID).stream().map(UUID::toString).collect(Collectors.toList())
             );
             instance.saveLeashData();
-            Helper.attachLeash(m, s);
+            Helper.attachLeash(m, master);
 
             // 启动绑定状态下的效果任务
-            startLeashTask(s, m);
-            // 提示消息
-            s.sendMessage("§d你拴住了 " + ChatColor.AQUA + m.getName() + " §d现在她是你的了！");
+            startLeashTask(master, m);
+
+//            Snow2Code_Plugin.petMaster.incrementProgression(master);
+            Advancements.petMaster.grant(master);
+            SemiFunc.LeashMessage("leashed", "chat", master, m, 0);
         }
 
         // ----------- 使用剑解除绑定逻辑 -----------
-        if (isSword(s.getInventory().getItemInMainHand().getType())) {
+        if (isSword(master.getInventory().getItemInMainHand().getType())) {
             // 检查是否已经绑定
             if (leashMap.containsKey(sUUID) && leashMap.get(sUUID).contains(mUUID)) {
                 // 从绑定列表中移除该玩家
@@ -92,14 +91,14 @@ public class leash implements Listener {
                 clearLeashTask(mUUID);
 
                 // 提示消息
-                s.sendMessage(ChatColor.RED + "你抛弃了 " + ChatColor.AQUA + m.getName() + ChatColor.RED + "，她现在只能流浪了");
+                SemiFunc.LeashMessage("abandonment", "chat", master, m, 0);
             }
         }
     }
     // 启动一个任务让 M（仆从）始终跟随 S（主人）
-    static void startLeashTask(Player s, Player m) {
+    static void startLeashTask(Player master, Player m) {
         if (getFenceLeashManager().isPlayerOnFence(m)) {
-            return; // 取消传送或传送逻辑
+            return;
         }
 
         // 如果 M 已经有一个任务在运行，取消当前任务
@@ -115,29 +114,27 @@ public class leash implements Listener {
         BukkitRunnable task = new BukkitRunnable() {
             @Override
             public void run() {
-                // 检查是否已解除绑定，如果解除则取消任务并禁用飞行
-                if (!isLeashed(s.getUniqueId(), m.getUniqueId())) {
+                if (!isLeashed(master.getUniqueId(), m.getUniqueId())) {
                     cancel();
-                    m.setAllowFlight(false); // 解除绑定时禁用飞行
+                    m.setAllowFlight(false);
                     leashTasks.remove(m.getUniqueId());
                     return;
                 }
 
-                // 检查 S 和 M 是否在线，若不在线则取消任务
-                if (!s.isOnline() || !m.isOnline()) {
+                if (!master.isOnline() || !m.isOnline()) {
                     cancel();
                     return;
                 }
 
                 // 获取 S 和 M 当前的位置
-                Location sLoc = s.getLocation();
+                Location sLoc = master.getLocation();
                 Location mLoc = m.getLocation();
 
                 // 强制 M 跟随 S，如果他们不在同一个世界，传送 M 到 S
                 if (!sLoc.getWorld().equals(mLoc.getWorld())) {
                     Helper.removeLeash(m.getUniqueId());
                     m.teleport(sLoc);
-                    Helper.attachLeash(m, s);
+                    Helper.attachLeash(m, master);
                     return;
                 }
 
@@ -159,8 +156,10 @@ public class leash implements Listener {
                             } else if (System.currentTimeMillis() - stuckStartTime[0] > 3000) {
                                 // 超过 3 秒，提醒主人仆从被卡住了
                                 String petName = m.getName();
-                                s.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                                        new TextComponent("§e你的小宠物 §d" + petName + " §e似乎被卡住了喵！"));
+
+                                Advancements.tangledUp.grant(master);
+                                SemiFunc.LeashMessage("stuck", "action_bar", master, m, 0);
+
                                 Helper.removeLeash(m.getUniqueId());
                                 stuckStartTime[0] = 0; // 重置计时器
                             }
@@ -174,7 +173,7 @@ public class leash implements Listener {
                 Vector pull = null;
                 if (distance > 48) {
                     m.teleport(sLoc); // 超远距离时直接传送
-                    Helper.attachLeash(m, s);
+                    Helper.attachLeash(m, master);
                 } else if (distance > 7 && m.isOnGround()) {
                     m.setVelocity(m.getVelocity().setY(0.3)); // 如果在地面，拉起 M
                     pull = sLoc.toVector().subtract(mLoc.toVector()).normalize().multiply(0.3); // 拉力

@@ -6,26 +6,28 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.snow2code.util.SemiLogger;
-import org.snow2code.util.interfaces.LeashSystem;
 import org.snow2code.plugin.playerleashing.soulleash.main.*;
+import org.snow2code.util.interfaces.LeashSystem;
+import static org.snow2code.plugin.Snow2Code_Plugin.plugin;
 
-public final class LeashMain implements LeashSystem
-{
+public class LeashMain implements LeashSystem {
 
     /*
-     * 
+     *
      * NOTE:
      * All comments from ncxiaoyi (the SoulLeash plugin author)
      * is translated from their language to english.
-     * 
-    */
+     *
+     */
 
     public static LeashMain instance;
-    public static final Map<UUID, List<UUID>> leashMap = new HashMap<>();
+    public static Map<UUID, List<UUID>> leashMap = new HashMap<>();
     public static final Map<UUID, BukkitRunnable> leashTasks = new HashMap<>();
     private static File leashDataFile;
     public static FileConfiguration leashDataConfig;
@@ -58,13 +60,13 @@ public final class LeashMain implements LeashSystem
 
 
         // ncxiaoyi: Start task
-        task.startLeashEffectTask(this);
+        task.startLeashEffectTask(plugin);
         Helper leashHelper = new Helper();
 
 
-        plugin.getServer().getPluginManager().registerEvents(new FoodShare(), LeashMain.plugin);
-        plugin.getServer().getPluginManager().registerEvents(new BoneControl(), LeashMain.plugin);
-        plugin.getServer().getPluginManager().registerEvents(new SummonAll(), LeashMain.plugin);
+        plugin.getServer().getPluginManager().registerEvents(new FoodShare(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new BoneControl(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new SummonAll(), plugin);
     }
 
     @Override
@@ -74,11 +76,10 @@ public final class LeashMain implements LeashSystem
             fence.saveFenceLeashData();
         }
         saveLeashData();
-        SemiLogger.Log("LeashPlayers 插件已关闭！");
     }
 
 
-    
+
     // ncxiaoyi: Initialize leash data file.
     public static void initializeLeashData() {
         leashDataFile = new File(plugin.getDataFolder(), "leash_data.yml");

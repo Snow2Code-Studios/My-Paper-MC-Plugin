@@ -3,11 +3,15 @@ display_name: 'Test'
 description: A snowy plugin
 author: 'snow2code'
 website: https://snow2code.infy.uk
-version: ${version} # '1.0-SNAPSHOT'
-main: org.snow2code.plugin.Main
+version: ${version}
+main: org.snow2code.plugin.Snow2Code_Plugin
 api-version: '1.21'
+depend: [UltimateAdvancementAPI]
 
-#commands:
+commands:
+  mouth:
+    description: Opens Snowy’s Snout Pouch or Mighty Mouth
+    usage: /mouth [small|big]
 #  snowy:
 #    description: Base command for Snowy's Plugin
 #    usage: /snowy <reload>

@@ -12,10 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.snow2code.plugin.playerleashing.soulleash.LeashMain;
-import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.instance;
-import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.leashMap;
-import static org.snow2code.util.interfaces.LeashSystem.plugin;
+import static org.snow2code.plugin.Snow2Code_Plugin.*;
+import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.*;
 
 public class dimension implements Listener {
     @EventHandler
@@ -29,7 +27,7 @@ public class dimension implements Listener {
             List<UUID> mUUIDs = leashMap.get(sUUID); // 获取与 S 绑定的所有 M（仆从） UUID
             for (UUID mUUID : mUUIDs) {
                 Player m = Bukkit.getPlayer(mUUID); // 获取每个 M 的玩家对象
-                if (LeashMain.getFenceLeashManager().isPlayerOnFence(m)) {
+                if (getFenceLeashManager().isPlayerOnFence(m)) {
                     return; // 取消传送或传送逻辑
                 }
                 if (m != null && m.isOnline()) { // 如果 M 在线
@@ -72,7 +70,7 @@ public class dimension implements Listener {
             List<UUID> mUUIDs = leashMap.get(playerUUID);  // 获取与 S 绑定的所有 M（仆从）UUID
             for (UUID mUUID : mUUIDs) {
                 Player m = Bukkit.getPlayer(mUUID);    // 获取每个 M 的玩家对象
-                if (LeashMain.getFenceLeashManager().isPlayerOnFence(m)) {
+                if (getFenceLeashManager().isPlayerOnFence(m)) {
                     return; // 取消传送或传送逻辑
                 }
                 if (m != null && m.isOnline()) {       // 如果 M 在线

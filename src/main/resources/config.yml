@@ -36,7 +36,7 @@ join-messages:
     - "%s joins. Better 'Run for it'" # Cone made you.
     # '%s joins. Ready to spam "skibidi" In the chat', # Cone made you.
     - "%s joins. ready to waste his money on virtual pixles." # Cone made you.
-    - "%s walks in dildo in hand" # Cone made you.
+    - "%s walks in. Dildo in hand" # Cone made you.
     - "%s joins. ready to comfort Snowy about anything" # Cone made you.
     - "%s joins. Snows tail just got a planned crit" # Cone made you.
     - "%s joins. Ready to pester Snowy about more dildo messages"
@@ -46,6 +46,9 @@ join-messages:
     - "Fox Boy Alert: %s is here… love-struck and far away."
     - "Incoming fox boy energy: %s has arrived."
     - "Careful… the Fox Boy %s might steal your heart."
+
+  ConeheadZombiee:
+    - "Test for %s"
 
   snow2code:
     - "%s sneaks in, black clothes and stolen keyboard in tow."
@@ -344,14 +347,3 @@ leash-system: "SoulLeash"
 # If true. Give them all custom crafting recipes
 # Used when a player joins
 give-custom-recipes: true
-
-snow2code-player:
-  scale: 0.65
-  attack-damage: 2
-  max-health: 28.0 # 40 was WAYYY too much!
-  walk-speed: 0.4f
-  knockback: 0.5 # 1
-  burn-time: 2
-  jump-bonus: 0.7
-  water-movement-efficiency: 1
-  sneak-speed: 0.4

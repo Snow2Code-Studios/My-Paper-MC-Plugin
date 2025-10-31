@@ -10,7 +10,8 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
-import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.leashMap;
+import org.snow2code.util.*;
+import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.*;
 
 public class SummonAll implements Listener {
 
@@ -30,7 +31,7 @@ public class SummonAll implements Listener {
 
         if (cooldownMap.containsKey(id) && now - cooldownMap.get(id) < CD) {
             long left = (CD - (now - cooldownMap.get(id))) / 1000;
-            p.sendMessage(ChatColor.RED + "冷却中哦，不要老想着传送，多在意一下你的小宝贝吧（还需 " + left + " 秒！）");
+            SemiFunc.LeashMessage("cooldown", "chat", p, p, left);
             return;
         }
 
@@ -47,10 +48,10 @@ public class SummonAll implements Listener {
                 f.teleport(loc);
 //                Helper.attachLeash(f, p);
                 f.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 1f, 1f);
+                SemiFunc.LeashMessage("summon pet", "chat", p, f, now);
             }
         }
 
         cooldownMap.put(id, now);
-        p.sendMessage(ChatColor.GREEN + "你召唤了你的小宠物过来了=v=！");
     }
 }

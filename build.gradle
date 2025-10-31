@@ -16,6 +16,7 @@ Build ver thingy:
 
 repositories {
     mavenCentral()
+    maven { url 'https://nexus.frengor.com/repository/public/' }
     maven {
         name = "papermc-repo"
         url = "https://repo.papermc.io/repository/maven-public/"
@@ -24,13 +25,30 @@ repositories {
 
 dependencies {
     // implementation(kotlin("stdlib"))
-    compileOnly("io.papermc.paper:paper-api:${paperapi}")//1.21.8-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
+    compileOnly 'com.frengor:ultimateadvancementapi:2.6.0'
+    // compileOnly("io.papermc.paper:paper-api:${paperapi}")//1.21.8-R0.1-SNAPSHOT")
 }
 
 tasks {
     runServer {
         jvmArgs("-Dcom.mojang.eula.agree=true")
         minecraftVersion("1.21")
+    }
+}
+
+jar {
+    archiveBaseName.set(rootProject.name) // Sets the base name of the JAR
+    archiveVersion.set(rootProject.version)       // Sets the version
+
+    // Exclude
+    exclude '**/*.md', '**/*.txt', '**META-INF/*.SF', '**/META-INF/*.DSA', '**/META-INF/*.RSA'
+
+    manifest {
+        attributes(
+//                'Class-Path': 'main',
+                'Main-Class': 'org.snow2code.standalone.Main'
+        )
     }
 }
 

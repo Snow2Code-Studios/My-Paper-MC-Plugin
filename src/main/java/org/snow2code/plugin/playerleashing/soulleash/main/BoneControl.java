@@ -13,6 +13,7 @@ import org.bukkit.inventory.PlayerInventory;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import org.snow2code.util.*;
 import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.leashMap;
 
 public class BoneControl implements Listener {
@@ -66,13 +67,13 @@ public class BoneControl implements Listener {
                 }
             }
             inv.setHelmet(getCursedBone());
-            master.sendMessage("§e呜呜呜不能说话了qwq");
+            SemiFunc.LeashMessage("gagged_start", "chat", master, servant, 0);
 
         } else if (hand.getType() == Material.SHEARS) {
             if (isWearingBone(servant)) {
                 servant.getInventory().setHelmet(null);
                 servant.getWorld().playSound(servant.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1.2f);
-                master.sendMessage("§a可以乖乖说话了owo");
+                SemiFunc.LeashMessage("gagged_end", "chat", master, servant, 0);
             }
         }
     }
@@ -89,7 +90,7 @@ public class BoneControl implements Listener {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < msg.length(); i++) {
-            sb.append("喵");
+            sb.append("meow"); // 喵
         }
 
         event.setMessage(sb.toString());
@@ -109,7 +110,8 @@ public class BoneControl implements Listener {
                 original = COLOR_PATTERN.matcher(original).replaceAll("");
                 original = PREFIX_SUFFIX_PATTERN.matcher(original).replaceAll("");
 
-                String censored = "喵".repeat(original.length());
+//                String censored = "喵".repeat(original.length());
+                String censored = "meow".repeat(original.length());
                 event.setMessage(parts[0] + " " + parts[1] + " " + censored);
             }
         }

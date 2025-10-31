@@ -10,12 +10,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.snow2code.plugin.playerleashing.soulleash.LeashMain;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import static org.snow2code.plugin.playerleashing.soulleash.LeashMain.*;
 
 public class Lookat implements Listener{
     public final Map<UUID, BukkitRunnable> leashTasks = new HashMap<>();
@@ -41,10 +42,10 @@ public class Lookat implements Listener{
         UUID masterUUID = master.getUniqueId();
 
         // 如果该玩家没有绑定任何人，则直接返回
-        if (!LeashMain.leashMap.containsKey(masterUUID)) return;
+        if (!leashMap.containsKey(masterUUID)) return;
 
         // 获取该玩家绑定的所有“跟随者”UUID 列表
-        List<UUID> followers = LeashMain.leashMap.get(masterUUID);
+        List<UUID> followers = leashMap.get(masterUUID);
         if (followers == null || followers.isEmpty()) return;
 
         // 获取主人的当前位置

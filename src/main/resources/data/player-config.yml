@@ -1,0 +1,18 @@
+snow2code:
+  scale: 0.65
+  attack-damage: 2
+  max-health: 28.0 # 40 was WAYYY too much!
+  walk-speed: 0.4f
+  knockback: 0.5 # 1
+  burn-time: 2
+  jump-bonus: 0.7
+  water-movement-efficiency: 1
+  sneak-speed: 0.4
+  no-fall-damage: true
+  join-sound: true
+
+codecr0w:
+  scale: 0.5
+  max-health: 30
+  no-fall-damage: true
+  join-sound: false

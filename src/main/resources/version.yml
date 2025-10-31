@@ -1,0 +1,17 @@
+# The development stage.
+stage: "beta"
+
+# If the build is a development build, changing doesn't do much so you're not getting any special features with changing this
+is_dev: true
+
+#    Stage                                      Meaning                                                Typical Use
+#   prototype	                  very early concept, unstable, for experiments only	        When testing core ideas or APIs
+#   pre-alpha	                  structure forming, most features missing	                    Before public builds
+#   alpha                         main systems implemented, but buggy & incomplete              Internal or early tester builds
+#   beta                          mostly complete, balancing and bug fixes ongoing	            Public testing builds
+#   rc (release candidate)	      ready for release unless major issues appear	                Final testing
+#   release	                      stable, public-ready	                                        Main production version
+#   lts (long-term support)	      stable release that will receive fixes	                    Good for servers relying on old versions
+#   deprecated	                  outdated, will be replaced or removed	                        Still available but not recommended
+#   snapshot	                  development build that doesn’t follow versioning strictly	    For continuous builds or CI exports
+#   nightly 	                  automatically built version of latest code	                For automated testers/devs only

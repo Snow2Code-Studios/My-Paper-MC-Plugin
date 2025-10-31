@@ -20,14 +20,12 @@ import java.util.stream.Collectors;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
-
-import org.snow2code.plugin.playerleashing.soulleash.LeashMain;
+import static org.snow2code.plugin.Snow2Code_Plugin.*;
+import org.snow2code.util.*;
 
 public class Listeners implements Listener {
 
-    private final JavaPlugin main = LeashMain.plugin; // LeashMain Instance
+    private final JavaPlugin main = plugin;
     private final Map<UUID, List<UUID>> leashMap = new HashMap<>();
     private final Map<UUID, BukkitRunnable> leashTasks = new HashMap<>();
     private final File leashDataFile = new File(main.getDataFolder(), "leash_data.yml");
@@ -55,8 +53,8 @@ public class Listeners implements Listener {
         Player s = e.getPlayer();
         Player m = (Player) e.getRightClicked();
 
-        if (!s.hasPermission("leashplayers.use")) return;
-        if (!m.hasPermission("leashplayers.leashable")) return;
+//        if (!s.hasPermission("leashplayers.use")) return;
+//        if (!m.hasPermission("leashplayers.leashable")) return;
 
         UUID sUUID = s.getUniqueId();
         UUID mUUID = m.getUniqueId();
@@ -71,7 +69,7 @@ public class Listeners implements Listener {
             saveLeashData();
 
             startLeashTask(s, m);
-            s.sendMessage(ChatColor.GREEN + "你拴住了 " + ChatColor.AQUA + m.getName() + ChatColor.GREEN + "，现在她是你的了！");
+            SemiFunc.LeashMessage("leashed", "chat", s, m, 0);
 
         }
 
@@ -88,7 +86,7 @@ public class Listeners implements Listener {
                 saveLeashData();
 
                 clearLeashTask(mUUID);
-                s.sendMessage(ChatColor.RED + "你抛弃了 " + ChatColor.AQUA + m.getName() + ChatColor.RED + "，她现在只能流浪了");
+                SemiFunc.LeashMessage("abandonment", "chat", s, m, 0);
             }
         }
     }
@@ -190,8 +188,7 @@ public class Listeners implements Listener {
                             } else if (System.currentTimeMillis() - stuckStartTime[0] > 3000) {
                                 // 超过 3 秒，发送提示信息
                                 String petName = m.getName();
-                                s.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                                        new TextComponent("§e你的小宠物 §d" + petName + " §e似乎被卡住了喵！"));
+                                SemiFunc.LeashMessage("stuck", "action_bar", s, m, 0);
                                 stuckStartTime[0] = 0; // 重置计时器
                             }
                         } else {
@@ -291,7 +288,6 @@ public class Listeners implements Listener {
             saveLeashData();
         }, 20L); // 延迟 1 秒以确保玩家位置加载完成
     }
-
 
 
     @EventHandler
@@ -397,7 +393,6 @@ public class Listeners implements Listener {
             }
         }
     }
-
 
     private void loadLeashData() {
         leashMap.clear();
